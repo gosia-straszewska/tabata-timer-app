@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1B1B1B;
+  font-family: 'Montserrat', sans-serif;
+}
+/* WELCOME COMPONENT */
+
+.container {
+  max-width: 1050px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+.app {
+  text-align: center;
+}
+.welcome-header {
+  color: white;
+  font-weight: 400;
+  font-size: 34px;
+  text-transform: uppercase;
+  margin: 20px;
+}
+
+.welcome-message {
+  color: #6DD5E3;
+  font-weight: 800;
+  font-size: 64px;
+  text-transform: uppercase;
+  margin-top: 70px;
+  margin-bottom: 40px;
+}
+
+.dumbbell {
+  color: white;
+}
+
+.welcome-btn-option {
+  background-color: #6DD5E3;
+  width: 251px;
+  height: 80px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: inset 0px 7px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 29px;
+  font-size: 36px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: #000000;
+  display: inline-block;
+  margin: 60px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.welcome-btn-option:hover {
+  background-color: rgb(47, 177, 194);
+  color: white;
+  transition: 0.8s;
+}
+
+/* BASIC=CUSTOM SETUP COMPONENT */
+
+.logo {
+  font-size: 18px;
+  color: white;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.container-basic {
+  max-width: 1050px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.title-basic {
+  color: #6DD5E3;
+  font-weight: 800;
+  font-size: 64px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.settings {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+  
+}
+
+.settings-section {
+  text-align: center;
+}
+
+.settings-section label {
+  font-weight: 600;
+  color: white;
+}
+
+.settings-section button {
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: 1px solid #6DD5E3;  
+  background-color: #6DD5E3;
+  color: #000000;
+  border-radius: 6px;
+  outline: none;
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+
+.settings-section button:not(.disable):hover {
+  cursor: pointer;
+  background-color: #4ebfc9;
+}
+
+.settings-section button.disable {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.settings-section span {
+  width: 45px;
+  height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 2px solid #6DD5E3; 
+  border-radius: 50%;
+  color: white;
+  margin: 10px;
+  font-size: 1.1rem;
+  padding: 30px;
+
+}
