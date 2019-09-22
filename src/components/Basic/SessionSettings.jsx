@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class Settings extends Component {
+export class SessionSettings extends Component {
     render() {
         return (
             <div className="settings">
@@ -11,15 +11,15 @@ export class Settings extends Component {
                     </div>
                 </div>
                 <div className="settings-section">
-                    <label id="break">Rest</label>
+                    <label id="workout">Work</label>
                     <div>
-                        <span id="break-length">{this.props.defaultBreakLength}</span>
+                        <span id="workout-length">{this.props.defaultWorkoutLength}</span>
                     </div>
                 </div>
                 <div className="settings-section">
-                    <label id="session">Work</label>
+                    <label id="break">Rest</label>
                     <div>
-                        <span id="session-length">{this.props.defaultSessionLength}</span>
+                        <span id="break-length">{this.props.defaultBreakLength}</span>
                     </div>
                 </div>
             </div>

@@ -13,14 +13,12 @@ const formatTime = (timeLeftInSecond) => {
 export class Timer extends Component {
     render() {
         return (
-            <div>
                 <div className="timer">
                     <div className="timer-content">
                         <label id="timer-name">{this.props.timerName}</label>
-                        <span id="time-left">{formatTime(this.props.timeLeftInSecond)}</span>
+                        <span id="time-left">{this.props.timeLeftInMinutes}:{this.props.timeLeftInSeconds}</span>
                     </div>
                 </div>
-            </div>
         )
     }
 }
