@@ -15,7 +15,6 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 100%;
 }
 .app {
   text-align: center;
@@ -100,17 +99,18 @@ a {
 /* TIMER */
 
 .timer-container{
-  max-width: 1050px;
+  max-width: 900px;
   height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 0 auto;
 }
 /* TIMER SECTION */
 
 .settings {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 25px;
 }
 
@@ -210,7 +210,8 @@ a {
 .interval-settings{
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 .container-controler{
   display: flex;
@@ -218,8 +219,7 @@ a {
   justify-content: space-around;
 }
 
-.start-btn-option,
-.stop-btn-option,
+.start-stop-btn-option,
 .reset-btn-option{
   font-size: 1rem;
   font-weight: 700;
@@ -237,15 +237,15 @@ a {
   transition: all 0.25s ease-out;
 }
 
-.start-btn-option{
+.start-stop-btn-option{
   border: 1px solid rgb(83, 185, 83);  
   background-color: rgb(83, 185, 83);
 }
 
-.stop-btn-option{
+/* .stop-btn-option{
   border: 1px solid rgb(219, 93, 93);
   background-color: rgb(219, 93, 93);
-}
+} */
 
 .reset-btn-option{
   border: 1px solid #6DD5E3;  
