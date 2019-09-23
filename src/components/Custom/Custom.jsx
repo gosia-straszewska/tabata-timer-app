@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Timer } from './Timer_b.jsx';
-import { SessionSettings } from './SessionSettings_b.jsx';
-import { IntervalSettings } from './IntervalSettings_b.jsx';
+import { Timer } from './Timer_c.jsx';
+import { SessionSettings } from './SessionSettings_c.jsx';
+import { IntervalSettings } from './IntervalSettings_c.jsx';
 import {Link} from 'react-router-dom';
 
-export class Basic extends Component {
+export class Custom extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -117,7 +117,7 @@ export class Basic extends Component {
                     <h4 className="logo">Tabata Timer</h4>
                     <button className="return-btn"><Link to='/'>Go back</Link></button>
                 </div>
-                <h1 className="title-basic">Basic setup</h1>
+                <h1 className="title-basic">Custom setup</h1>
                 <div className="timer-container">
                     <SessionSettings
                         defaultPrepareLength={this.state.preparationTime}
