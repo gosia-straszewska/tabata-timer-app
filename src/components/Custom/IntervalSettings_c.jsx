@@ -9,7 +9,9 @@ export class IntervalSettings extends Component {
                 <div className="settings-section">
                     <label id="sets">Sets</label>
                     <div>
+                        <button id="sets-decrement" onClick={this.props.decreaseSets}>-</button>
                         <span id="sets-length">{this.props.defaultSetsLength}</span>
+                        <button id="sets-increment" onClick={this.props.increaseSets}>+</button>
                     </div>
                 </div>
                 <div>
@@ -21,7 +23,9 @@ export class IntervalSettings extends Component {
                 <div className="settings-section">
                     <label id="session">Sessions</label>
                     <div>
+                        <button id="session-decrement" onClick={this.props.decreaseSession}>-</button>
                         <span id="session-length">{this.props.defaultSessionLength}</span>
+                        <button id="session-increment" onClick={this.props.increaseSession}>+</button>
                     </div>
                 </div>
             </div>
