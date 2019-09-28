@@ -15,7 +15,6 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 100%;
 }
 .app {
   text-align: center;
@@ -71,19 +70,40 @@ a {
 }
 
 /* BASIC=CUSTOM SETUP COMPONENT */
+/* OPENING */
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .logo {
   font-size: 18px;
   color: white;
   font-weight: 400;
   text-transform: uppercase;
-  margin: 0 auto;
-  margin-top: 20px;
+}
+
+.return-btn{
+  background-color: #6DD5E3;
+  width: 100px;
+  height: 40px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: inset 0px 7px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  font-size: 1rem;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: #000000;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .container-basic {
   max-width: 1050px;
-  height: 100%;
+  height: 30vh;
   margin: 0 auto;
 }
 
@@ -97,11 +117,24 @@ a {
   justify-content: center;
 }
 
+/* TIMER */
+
+.timer-container{
+  max-width: 900px;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+
+/* TIMER SECTION */
+
 .settings {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 25px;
-  
 }
 
 .settings-section {
@@ -113,17 +146,131 @@ a {
   color: white;
 }
 
-.settings-section button {
+.settings-section span {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 2px solid #6DD5E3; 
+  border-radius: 50%;
+  color: white;
+  margin: 10px;
   font-size: 1.1rem;
+  padding: 30px;
+}
+
+/* TIMER */
+
+.timer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer-content{
+  width: 45px;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 6px solid #6DD5E3; 
+  border-radius: 50%;
+  color: white;
+  margin: 10px;
+  padding: 80px;
+}
+
+#timer-name{
+  color: white;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin: 5px;
+}
+
+#time-left{
+  color: white;
+  margin: 5px;
+  font-size: 2.1rem;
+  font-weight: 600;
+}
+
+#total-time{
+  color: white;
+  margin-top: 13px;
+  font-size: 1.3rem;
+}
+
+/* INTERVAL SETTINGS */
+
+.interval-settings{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.container-controler{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.start-stop-btn-option,
+.reset-btn-option{
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000000;
+  border-radius: 6px;
+  margin: 5px;
+  outline: none;
+  width: 85px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+
+.start-stop-btn-option{
+  border: 1px solid rgb(83, 185, 83);  
+  background-color: rgb(83, 185, 83);
+}
+
+/* .stop-btn-option{
+  border: 1px solid rgb(219, 93, 93);
+  background-color: rgb(219, 93, 93);
+} */
+
+.reset-btn-option{
+  border: 1px solid #6DD5E3;  
+  background-color: #6DD5E3;
+}
+
+/* CUSTOM */
+
+/* CUSTOM BUTTON */
+.settings-section div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.settings-section button {
+  font-size: 1rem;
   font-weight: 700;
   border: 1px solid #6DD5E3;  
   background-color: #6DD5E3;
   color: #000000;
   border-radius: 6px;
   outline: none;
-  width: 35px;
-  height: 35px;
-  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  display: flex;
   align-items: center;
   justify-content: center;
   -webkit-transition: all 0.25s ease-out;
@@ -139,20 +286,4 @@ a {
 .settings-section button.disable {
   opacity: 0.5;
   cursor: not-allowed;
-}
-
-.settings-section span {
-  width: 45px;
-  height: 45px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  border: 2px solid #6DD5E3; 
-  border-radius: 50%;
-  color: white;
-  margin: 10px;
-  font-size: 1.1rem;
-  padding: 30px;
-
 }

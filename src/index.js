@@ -5,8 +5,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render( < App 
-    defaultBreakLength='5' 
-    defaultSessionLength='25' 
     /> ,
     document.getElementById('root'));
 
