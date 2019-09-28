@@ -8,23 +8,27 @@ export class Custom extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            timerName: 'Total',
+            timerName: 'Prepare',
             isStart: false,
             preparationTime: 10,
             workoutTime: 20,
+            worktime: 0,
             breakTime: 10,
-            setsLength: 8,
+            setsLength: 1,
             sessionLength: 1,
             timerInterval: null,
             totalTime: 0,
             timeLeftInSeconds: 0,
             timeLeftInMinutes: 0,
+            setTime: 0,
+            border: 'rgb(83, 185, 83)',
+            stop: false,
+            disabled: false,
         }
 
         this.onReset = this.onReset.bind(this);
         this.onStartStop = this.onStartStop.bind(this);
-        // this.decreaseSecondTimer = this.decreaseTimer.bind(this);
-        this.phaseControl = this.phaseControl.bind(this);
+        this.decreaseTotalTimer = this.decreaseTotalTimer.bind(this);
         this.increaseSets = this.increaseSets.bind(this);
         this.decreaseSets = this.decreaseSets.bind(this);
         this.increaseSession = this.increaseSession.bind(this);
@@ -35,70 +39,82 @@ export class Custom extends Component {
         this.decreaseWorkout = this.decreaseWorkout.bind(this);
         this.increaseBreak = this.increaseBreak.bind(this);
         this.decreaseBreak = this.decreaseBreak.bind(this);
+        this.setTime = this.setTime.bind(this);
     };
-    // jak przypisać update totalTime np. do zmiennej, bez powtarzania kodu przy kazdym przycisku
+
     componentDidMount() {
+        this.setTime();
+    }
+
+    setTime() {
         this.setState({
-            totalTime: this.state.setsLength * (this.state.workoutTime + this.state.breakTime) + this.state.preparationTime,
+            totalTime: (this.state.setsLength * (this.state.workoutTime + this.state.breakTime) + this.state.preparationTime) * this.state.sessionLength,
 
             timeLeftInMinutes: Math.floor((this.state.setsLength * (this.state.workoutTime + this.state.breakTime) + this.state.preparationTime) / 60),
 
             timeLeftInSeconds: (this.state.setsLength * (this.state.workoutTime + this.state.breakTime) + this.state.preparationTime) % 60,
-        })
-    }
 
+            worktime: this.state.preparationTime,
+
+            sessionTime: this.state.setsLength * (this.state.workoutTime + this.state.breakTime) + this.state.preparationTime
+
+        })
+        console.log(this.state)
+    }
     // metody do przycisków
     //PREAPRE - działa
-    increasePreparation(){
+    increasePreparation() {
         if (this.state.preparationTime < 60 && !this.state.isStart) {
             this.setState({
                 preparationTime: this.state.preparationTime + 10,
-                totalTime: ((this.state.setsLength * (this.state.workoutTime + this.state.breakTime)) + (this.state.preparationTime+10)) * this.state.sessionLength,
+                totalTime: ((this.state.setsLength * (this.state.workoutTime + this.state.breakTime)) + (this.state.preparationTime + 10)) * this.state.sessionLength,
+                worktime: this.state.preparationTime + 10,
             });
         }
     }
 
-    decreasePreparation(){
-        if (this.state.preparationTime > 0 && !this.state.isStart) {
+    decreasePreparation() {
+        if (this.state.preparationTime > 10 && !this.state.isStart) {
             this.setState({
                 preparationTime: this.state.preparationTime - 10,
-                totalTime: (this.state.setsLength * (this.state.workoutTime + this.state.breakTime)) + (this.state.preparationTime-10) * this.state.sessionLength,
+                totalTime: (this.state.setsLength * (this.state.workoutTime + this.state.breakTime)) + (this.state.preparationTime - 10) * this.state.sessionLength,
+                worktime: this.state.preparationTime - 10,
             });
         }
     }
     //WORK- działa
-    increaseWorkout(){
+    increaseWorkout() {
         if (this.state.workoutTime < 300 && !this.state.isStart) {
             this.setState({
                 workoutTime: this.state.workoutTime + 20,
-                totalTime: ((this.state.setsLength * ((this.state.workoutTime+20) + this.state.breakTime)) + this.state.preparationTime) * this.state.sessionLength,
+                totalTime: ((this.state.setsLength * ((this.state.workoutTime + 20) + this.state.breakTime)) + this.state.preparationTime) * this.state.sessionLength,
             });
         }
     }
 
-    decreaseWorkout(){
+    decreaseWorkout() {
         if (this.state.workoutTime > 20 && !this.state.isStart) {
             this.setState({
                 workoutTime: this.state.workoutTime - 20,
-                totalTime: (this.state.setsLength * ((this.state.workoutTime-20) + this.state.breakTime)) + this.state.preparationTime * this.state.sessionLength,
+                totalTime: (this.state.setsLength * ((this.state.workoutTime - 20) + this.state.breakTime)) + this.state.preparationTime * this.state.sessionLength,
             });
         }
     }
     //BREAK
-    increaseBreak(){
+    increaseBreak() {
         if (this.state.breakTime < 300 && !this.state.isStart) {
             this.setState({
                 breakTime: this.state.breakTime + 10,
-                totalTime: ((this.state.setsLength * (this.state.workoutTime + (this.state.breakTime+10)) + this.state.preparationTime) * this.state.sessionLength),
+                totalTime: ((this.state.setsLength * (this.state.workoutTime + (this.state.breakTime + 10)) + this.state.preparationTime) * this.state.sessionLength),
             });
         }
     }
 
-    decreaseBreak(){
+    decreaseBreak() {
         if (this.state.breakTime > 10 && !this.state.isStart) {
             this.setState({
                 breakTime: this.state.breakTime - 10,
-                totalTime: (this.state.setsLength * (this.state.workoutTime + (this.state.breakTime-10)) + this.state.preparationTime * this.state.sessionLength),
+                totalTime: (this.state.setsLength * (this.state.workoutTime + (this.state.breakTime - 10)) + this.state.preparationTime * this.state.sessionLength),
             });
         }
     }
@@ -108,7 +124,7 @@ export class Custom extends Component {
         if (this.state.setsLength < 15 && !this.state.isStart) {
             this.setState({
                 setsLength: this.state.setsLength + 1,
-                totalTime: ((this.state.setsLength+1) * (this.state.workoutTime + this.state.breakTime)) + this.state.preparationTime,
+                totalTime: ((this.state.setsLength + 1) * (this.state.workoutTime + this.state.breakTime)) + this.state.preparationTime,
             });
         }
     }
@@ -117,7 +133,7 @@ export class Custom extends Component {
         if (this.state.setsLength > 1 && !this.state.isStart) {
             this.setState({
                 setsLength: this.state.setsLength - 1,
-                totalTime: (this.state.setsLength-1) * (this.state.workoutTime + this.state.breakTime) + this.state.preparationTime,
+                totalTime: (this.state.setsLength - 1) * (this.state.workoutTime + this.state.breakTime) + this.state.preparationTime,
             });
         }
     }
@@ -127,95 +143,118 @@ export class Custom extends Component {
         if (this.state.sessionLength < 5 && !this.state.isStart) {
             this.setState({
                 sessionLength: this.state.sessionLength + 1,
-                totalTime: ((this.state.setsLength * (this.state.workoutTime + this.state.breakTime)) + this.state.preparationTime) * (this.state.sessionLength+1),
+                totalTime: ((this.state.setsLength * (this.state.workoutTime + this.state.breakTime)) + this.state.preparationTime) * (this.state.sessionLength + 1),
             });
         }
     }
 
-    decreaseSession(){
+    decreaseSession() {
         if (this.state.sessionLength > 1 && !this.state.isStart) {
             this.setState({
                 sessionLength: this.state.sessionLength - 1,
-                totalTime: ((this.state.setsLength * (this.state.workoutTime + this.state.breakTime)) + this.state.preparationTime) * (this.state.sessionLength-1),
+                totalTime: ((this.state.setsLength * (this.state.workoutTime + this.state.breakTime)) + this.state.preparationTime) * (this.state.sessionLength - 1),
             });
         }
     }
 
 
-// Przyciski kontrolne DZIAŁA
+    // Przyciski kontrolne DZIAŁA
     onStartStop() {
         if (!this.state.isStart) {
             this.setState({
                 isStart: !this.state.isStart,
                 timerInterval: setInterval(() => {
-                    this.decreaseSecondTimer();
-                    this.phaseControl();
-                }, 1000)
+                    this.decreaseTotalTimer();
+                    if (this.state.stop === true) {
+                        clearInterval(this.state.timerInterval);
+                    }
+                }, 1000),
             })
         } else {
             this.state.timerInterval && clearInterval(this.state.timerInterval);
 
             this.setState({
-                isStart: !this.state.isStart,
-                timerInterval: null
+                isStart: this.state.isStart,
+                timerInterval: null,
             });
         }
     }
 
-    decreaseSecondTimer() {
+    decreaseTotalTimer() {
         this.setState({
             totalTime: this.state.totalTime - 1,
-            // timeLeftInMinutes: this.state.timeLeftInMinutes - 1
+            worktime: this.state.worktime - 1
         });
-    }
+        console.log(this.state);
 
-    onReset() {
-        this.setState({
-            timerName: 'Total',
-            isStart: false,
-            preparationTime: 10,
-            workoutTime: 20,
-            breakTime: 10,
-            setsLength: 8,
-            sessionLength: 1,
-            timerInterval: null,
-            totalTime: 250,
-            timeLeftInSeconds: 0,
-            timeLeftInMinutes: 0,
-        });
-
-        this.state.timerInterval && clearInterval(this.state.timerInterval);
-    };
-
-
-    //Zmiana cyklu!!! DO ZROBIENIA
-    phaseControl() {
-        if (this.state.timeLeftInSecond === 0) {
+        if (this.state.worktime === 0 && this.state.timerName === 'Prepare') {
             this.setState({
-                timerName: "Finished"
+                timerName: 'Work',
+                workoutTime: this.state.workoutTime,
+                worktime: this.state.workoutTime,
+                border: 'rgb(219, 93, 93)'
+            });
+        } else if (this.state.worktime === 0 && this.state.timerName === 'Work') {
+
+            this.setState({
+                timerName: 'Break',
+                breakTime: this.state.breakTime,
+                worktime: this.state.breakTime,
+                border: '#6DD5E3'
             })
-        } else if (this.state.timeLeftInSecond === -1) {
-            if (this.state.timerName === 'Work') {
+        } else if (this.state.worktime === 0 && this.state.timerName === 'Break') {
+
+            if (this.state.setsLength === 1) {
                 this.setState({
-                    timerName: 'Rest',
-                    timeLeftInSecond: this.state.breakLength * 60
+                    timerName: 'Finished',
+                    totalTime: 0,
+                    border: 'yellow',
+                    setsLength: 0,
+                    stop: true,
+                    disabled: true,
                 });
             } else {
                 this.setState({
                     timerName: 'Work',
-                    timeLeftInSecond: this.state.sessionLength * 60
+                    // workoutTime: this.state.workoutTime - 1,
+                    worktime: this.state.workoutTime,
+                    setsLength: this.state.setsLength - 1,
+                    border: 'rgb(219, 93, 93)'
                 });
             }
-        }
+
+        } 
     }
+
+
+    //DZIAŁA
+    onReset() {
+        this.setState({
+            timerName: 'Prepare',
+            isStart: false,
+            preparationTime: 10,
+            workoutTime: 20,
+            worktime: 0,
+            breakTime: 10,
+            setsLength: 1,
+            sessionLength: 1,
+            timerInterval: null,
+            totalTime: 0,
+            timeLeftInSeconds: 0,
+            timeLeftInMinutes: 0,
+            border: 'rgb(83, 185, 83)',
+            stop: false,
+            disabled: false,
+        });
+        let self = this;
+        setTimeout(function () {
+            self.setTime();
+        }, 1)
+
+    };
 
     render() {
         const { totalTime, timeLeftInMinutes, timeLeftInSeconds } = this.state;
-
-        // const totalTime = setsLength * (workoutTime + breakTime) + preparationTime;
-        // // console.log(totalTime)
-        // const timeLeftInMinutes = Math.floor(totalTime / 60);
-        // const timeLeftInSeconds = totalTime % 60;
 
         return (
             <div className="container-basic">
@@ -242,7 +281,10 @@ export class Custom extends Component {
                         timerName={this.state.timerName}
                         timeLeftInMinutes={timeLeftInMinutes}
                         timeLeftInSeconds={timeLeftInSeconds}
+                        preparationTime={this.state.preparationTime}
+                        worktime={this.state.worktime}
                         totalTime={totalTime}
+                        border={this.state.border}
                     />
                     <IntervalSettings
                         defaultSetsLength={this.state.setsLength}
@@ -251,6 +293,7 @@ export class Custom extends Component {
                         onReset={this.onReset}
                         onStartStop={this.onStartStop}
                         isStart={this.state.isStart}
+                        disabled={this.state.disabled}
                         // +/- buttons
                         decreaseSets={this.decreaseSets}
                         increaseSets={this.increaseSets}

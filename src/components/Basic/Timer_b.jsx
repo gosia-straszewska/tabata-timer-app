@@ -6,7 +6,7 @@ const formatTime = (timeLeftInSecond) => {
   
     let second = timeLeftInSecond - 60 * minute;
     if (second < 10) second = '0' + second;
-  
+
     return `${minute}:${second}`;
 }
 
@@ -14,10 +14,11 @@ export class Timer extends Component {
     render() {
         return (
                 <div className="timer">
-                    <div className="timer-content">
-                        <label id="timer-name">{this.props.timerName}</label>
-                        <span id="time-left">{formatTime(this.props.totalTime)}</span>
+                    <div className="timer-content" style={{borderColor: this.props.border}}>
+                        <label id="timer-name" style={{color: this.props.border}}>{this.props.timerName}</label>
+                        <span id="time-left">{formatTime(this.props.worktime)}</span>
                     </div>
+                    <div id="total-time" style={{color: "#6DD5E3"}}>TOTAL TIME: {formatTime(this.props.totalTime)}</div>
                 </div>
         )
     }

@@ -127,6 +127,8 @@ a {
   justify-content: space-between;
   margin: 0 auto;
 }
+
+
 /* TIMER SECTION */
 
 .settings {
@@ -195,6 +197,12 @@ a {
   margin: 5px;
   font-size: 2.1rem;
   font-weight: 600;
+}
+
+#total-time{
+  color: white;
+  margin-top: 13px;
+  font-size: 1.3rem;
 }
 
 /* INTERVAL SETTINGS */

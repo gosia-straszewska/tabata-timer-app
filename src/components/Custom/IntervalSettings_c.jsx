@@ -16,16 +16,16 @@ export class IntervalSettings extends Component {
                 </div>
                 <div>
                     <section className="container-controler">
-                        <button className="start-stop-btn-option" style={this.props.isStart ? {background: "rgb(219, 93, 93)", border: "rgb(219, 93, 93)"} : {background: "rgb(83, 185, 83)"}} onClick={this.props.onStartStop}>{this.props.isStart ? 'Stop' : 'Start'}</button>
+                        <button className="start-stop-btn-option" disabled={this.props.disabled} style={this.props.isStart ? {background: "rgb(219, 93, 93)", border: "rgb(219, 93, 93)"} : {background: "rgb(83, 185, 83)"}} onClick={this.props.onStartStop}>{this.props.isStart ? 'Stop' : 'Start'}</button>
                         <button className="reset-btn-option" onClick={this.props.onReset}>Reset</button>
                     </section>
                 </div>
                 <div className="settings-section">
                     <label id="session">Sessions</label>
                     <div>
-                        <button id="session-decrement" onClick={this.props.decreaseSession}>-</button>
+                        <button id="session-decrement" onClick={this.props.decreaseSession} style={{ color: 'transparent', background: 'transparent', borderColor: 'transparent' }}>-</button>
                         <span id="session-length">{this.props.defaultSessionLength}</span>
-                        <button id="session-increment" onClick={this.props.increaseSession}>+</button>
+                        <button id="session-increment" onClick={this.props.increaseSession} style={{ color: 'transparent', background: 'transparent', borderColor: 'transparent' }}>+</button>
                     </div>
                 </div>
             </div>
