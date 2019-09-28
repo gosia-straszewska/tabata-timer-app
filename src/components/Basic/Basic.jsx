@@ -3,6 +3,10 @@ import { Timer } from './Timer_b.jsx';
 import { SessionSettings } from './SessionSettings_b.jsx';
 import { IntervalSettings } from './IntervalSettings_b.jsx';
 import { Link } from 'react-router-dom';
+import UIfx from 'uifx';
+import BellMp3 from '../../sounds/Bell.mp3';
+
+const beep = new UIfx(BellMp3);
 
 export class Basic extends Component {
     constructor(props) {
@@ -23,6 +27,7 @@ export class Basic extends Component {
             border: 'rgb(83, 185, 83)',
             stop: false,
             disabled: false,
+            sound: beep,
         }
 
         this.onReset = this.onReset.bind(this);
@@ -115,7 +120,8 @@ export class Basic extends Component {
                     border: 'rgb(219, 93, 93)'
                 });
             }
-            
+        } else if (this.state.worktime === 2) {
+            this.state.sound.play();
         }
     }
 
