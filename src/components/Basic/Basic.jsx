@@ -159,7 +159,7 @@ export class Basic extends Component {
             <div className="container-basic">
                 <div className="header">
                     <h4 className="logo">Tabata Timer</h4>
-                    <button className="return-btn"><Link to='/'>Go back</Link></button>
+                    <Link to="/"><button className="return-btn">Go back</button></Link>
                 </div>
                 <h1 className="title-basic">Basic setup</h1>
                 <div className="timer-container">
