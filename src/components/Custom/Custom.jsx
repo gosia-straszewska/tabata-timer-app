@@ -63,7 +63,7 @@ export class Custom extends Component {
         (this.state.setsLength *
           (this.state.workoutTime + this.state.breakTime) +
           this.state.preparationTime) /
-          60
+        60
       ),
 
       timeLeftInSeconds:
@@ -76,7 +76,7 @@ export class Custom extends Component {
 
       sessionTime:
         this.state.setsLength *
-          (this.state.workoutTime + this.state.breakTime) +
+        (this.state.workoutTime + this.state.breakTime) +
         this.state.preparationTime
     });
     console.log(this.state);
@@ -103,7 +103,7 @@ export class Custom extends Component {
         preparationTime: this.state.preparationTime - 10,
         totalTime:
           this.state.setsLength *
-            (this.state.workoutTime + this.state.breakTime) +
+          (this.state.workoutTime + this.state.breakTime) +
           (this.state.preparationTime - 10) * this.state.sessionLength,
         worktime: this.state.preparationTime - 10
       });
@@ -129,7 +129,7 @@ export class Custom extends Component {
         workoutTime: this.state.workoutTime - 20,
         totalTime:
           this.state.setsLength *
-            (this.state.workoutTime - 20 + this.state.breakTime) +
+          (this.state.workoutTime - 20 + this.state.breakTime) +
           this.state.preparationTime * this.state.sessionLength
       });
     }
@@ -154,7 +154,7 @@ export class Custom extends Component {
         breakTime: this.state.breakTime - 10,
         totalTime:
           this.state.setsLength *
-            (this.state.workoutTime + (this.state.breakTime - 10)) +
+          (this.state.workoutTime + (this.state.breakTime - 10)) +
           this.state.preparationTime * this.state.sessionLength
       });
     }
@@ -167,7 +167,7 @@ export class Custom extends Component {
         setsLength: this.state.setsLength + 1,
         totalTime:
           (this.state.setsLength + 1) *
-            (this.state.workoutTime + this.state.breakTime) +
+          (this.state.workoutTime + this.state.breakTime) +
           this.state.preparationTime
       });
     }
@@ -179,7 +179,7 @@ export class Custom extends Component {
         setsLength: this.state.setsLength - 1,
         totalTime:
           (this.state.setsLength - 1) *
-            (this.state.workoutTime + this.state.breakTime) +
+          (this.state.workoutTime + this.state.breakTime) +
           this.state.preparationTime
       });
     }
@@ -299,7 +299,7 @@ export class Custom extends Component {
       disabled: false
     });
     let self = this;
-    setTimeout(function() {
+    setTimeout(function () {
       self.setTime();
     }, 1);
   }
@@ -311,48 +311,46 @@ export class Custom extends Component {
       <div className="container-basic">
         <div className="header">
           <h4 className="logo">Tabata Timer</h4>
-          <button className="return-btn">
-            <Link to="/">Go back</Link>
-          </button>
-        </div>
-        <h1 className="title-basic">Custom setup</h1>
-        <div className="timer-container">
-          <SessionSettings
-            defaultPrepareLength={this.state.preparationTime}
-            defaultBreakLength={this.state.breakTime}
-            defaultWorkoutLength={this.state.workoutTime}
-            decreasePreparation={this.decreasePreparation}
-            increasePreparation={this.increasePreparation}
-            decreaseWorkout={this.decreaseWorkout}
-            increaseWorkout={this.increaseWorkout}
-            decreaseBreak={this.decreaseBreak}
-            increaseBreak={this.increaseBreak}
-          />
-          <Timer
-            timerName={this.state.timerName}
-            timeLeftInMinutes={timeLeftInMinutes}
-            timeLeftInSeconds={timeLeftInSeconds}
-            preparationTime={this.state.preparationTime}
-            worktime={this.state.worktime}
-            totalTime={totalTime}
-            border={this.state.border}
-          />
-          <IntervalSettings
-            defaultSetsLength={this.state.setsLength}
-            defaultSessionLength={this.state.sessionLength}
-            // buttons control
-            onReset={this.onReset}
-            onStartStop={this.onStartStop}
-            isStart={this.state.isStart}
-            disabled={this.state.disabled}
-            // +/- buttons
-            decreaseSets={this.decreaseSets}
-            increaseSets={this.increaseSets}
-            decreaseSession={this.decreaseSession}
-            increaseSession={this.increaseSession}
-          />
-        </div>
+          <Link to="/"><button className="return-btn">Go back</button></Link>
       </div>
+      <h1 className="title-basic">Custom setup</h1>
+      <div className="timer-container">
+        <SessionSettings
+          defaultPrepareLength={this.state.preparationTime}
+          defaultBreakLength={this.state.breakTime}
+          defaultWorkoutLength={this.state.workoutTime}
+          decreasePreparation={this.decreasePreparation}
+          increasePreparation={this.increasePreparation}
+          decreaseWorkout={this.decreaseWorkout}
+          increaseWorkout={this.increaseWorkout}
+          decreaseBreak={this.decreaseBreak}
+          increaseBreak={this.increaseBreak}
+        />
+        <Timer
+          timerName={this.state.timerName}
+          timeLeftInMinutes={timeLeftInMinutes}
+          timeLeftInSeconds={timeLeftInSeconds}
+          preparationTime={this.state.preparationTime}
+          worktime={this.state.worktime}
+          totalTime={totalTime}
+          border={this.state.border}
+        />
+        <IntervalSettings
+          defaultSetsLength={this.state.setsLength}
+          defaultSessionLength={this.state.sessionLength}
+          // buttons control
+          onReset={this.onReset}
+          onStartStop={this.onStartStop}
+          isStart={this.state.isStart}
+          disabled={this.state.disabled}
+          // +/- buttons
+          decreaseSets={this.decreaseSets}
+          increaseSets={this.increaseSets}
+          decreaseSession={this.decreaseSession}
+          increaseSession={this.increaseSession}
+        />
+      </div>
+      </div >
     );
   }
 }

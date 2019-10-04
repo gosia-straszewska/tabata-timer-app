@@ -15,8 +15,8 @@ export class Welcome extends Component {
             </section>
             <div><FontAwesomeIcon className="dumbbell" size="5x" icon={faDumbbell} /></div>
             <section className="container">
-                <button className="welcome-btn-option"><Link to='/basic'>Basic</Link></button>
-                <button className="welcome-btn-option"><Link to='/custom'>Custom</Link></button>
+            <Link to='/basic'><button className="welcome-btn-option">Basic</button></Link>
+            <Link to='/custom'><button className="welcome-btn-option">Custom</button></Link>
             </section>
             </div>
         )
